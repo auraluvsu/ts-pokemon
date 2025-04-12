@@ -1,16 +1,17 @@
 import {Types} from "../types/types";
 type Type = typeof Types[keyof typeof Types];
-interface PokemonData {
+
+export interface PokemonData {
     name: string;
-    level: number;
-    atk: number;
-    hp: number;
-    def: number;
     type: Type;
-    moveset: Move[]
+    atk: number;
+    def: number;
+    hp: number;
+    level: number;
+    moveset: Move[];
 }
 
-interface MoveData {
+export interface MoveData {
     name: string;
     type: Type;
     power: number;
@@ -19,28 +20,26 @@ interface MoveData {
 }
 
 export class Pokemon {
-    name: string;
     level: number = 10;
-    atk: number;
-    def: number;
-    type: Type;
-    hp: number;
-    moveset: Move[];
-    constructor(name:string, atk:number, def:number, type: Type, hp: number,  moveset: Move[]) {
-        this.name = name;
-        this.atk = atk;
-        this.def = def;
-        this.type = type;
-        this.hp = hp
-        this.moveset = moveset;
-    }
+    constructor(
+        public name: string,
+        public type: Type,
+        public atk: number,
+        public def: number, 
+        public hp: number,
+        public moveset: Move[] | undefined
+    ){}
     attack(target: Pokemon, move: number): boolean {
         if (target.hp < 1) {
             throw new Error("Error! Pokemon health is invalid");
         } else {
             const moveIndex = move - 1;
-            target.hp -= this.moveset[moveIndex].power;
-            this.moveset[moveIndex].currentPP--;
+            const newMove: Move = this.moveset![moveIndex];
+            if (!newMove) {
+                console.log(`Error! Move number ${move} does not exist`); 
+            }
+            target.hp -= newMove.power;
+            newMove.currentPP--;
             if (target.hp <= 0) {
                 console.log(`${target.name}'s HP has been reduced to 0!\n${target.name} fainted!`);
                 return true
@@ -49,8 +48,8 @@ export class Pokemon {
         }
     }
     static fromJSON(data: PokemonData): Pokemon {
-        const moves = data.moveset.map(Move.fromJSON);
-        return new Pokemon(data.name, data.atk, data.def, data.type, data.hp, moves);
+        const moves: Move[] | undefined = data.moveset.map(Move.fromJSON);
+        return new Pokemon(data.name, data.type, data.atk, data.def, data.hp, moves);
     }
 }
 
