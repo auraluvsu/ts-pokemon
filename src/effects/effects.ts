@@ -8,3 +8,7 @@ export function paralysis(pkm: Pokemon) {
     }
 }
 
+export function poison(pkm: Pokemon) {
+    console.log(`${pkm.name} is being damaged by the poison!`);
+    pkm.hp -= (pkm.hp * (1/8));
+}
