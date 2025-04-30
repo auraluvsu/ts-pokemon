@@ -1,4 +1,5 @@
 import {Types} from "../types/types";
+import { StatusEffect } from "../effects/effects";
 type Type = typeof Types[keyof typeof Types];
 
 export interface PokemonData {
@@ -17,10 +18,12 @@ export interface MoveData {
     power: number;
     maxPP: number,
     currentPP: number;
+    effect: StatusEffect;
 }
 
 export class Pokemon {
     level: number = 10;
+    statusEffect!: StatusEffect | null;
     constructor(
         public name: string,
         public type: Type,
@@ -29,6 +32,9 @@ export class Pokemon {
         public hp: number,
         public moveset: Move[] | undefined
     ){}
+    setEffect(effect: StatusEffect) {
+        this.statusEffect = effect;
+    }
     attack(target: Pokemon, move: number): boolean {
         if (target.hp < 1) {
             throw new Error("Error! Pokemon health is invalid");
@@ -59,9 +65,10 @@ export class Move {
         public type: Type,
         public power: number,
         public maxPP: number,
-        public currentPP: number = this.maxPP
+        public currentPP: number = this.maxPP,
+        public effect: StatusEffect | null
     ){}
     static fromJSON(data: MoveData): Move {
-        return new Move(data.name, data.type, data.power, data.maxPP, data.currentPP);
+        return new Move(data.name, data.type, data.power, data.maxPP, data.currentPP, data.effect);
     }
 }

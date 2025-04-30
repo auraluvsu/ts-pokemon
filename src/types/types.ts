@@ -15,16 +15,16 @@ type TypeEffectivenessMatrix = Record<PokemonType, Record<PokemonType, number>>;
 const pkmTypes: TypeEffectivenessMatrix = rawPkmTypes;
 export default pkmTypes;
 export const Types = {
+    Normal: "Normal",
+    Fire: "Fire",
+    Water: "Water",
+    Grass: "Grass",
+    Electric: "Electric",
+    Fighting: "Fighting",
+    Psychic: "Psychic",
     Flying: "Flying",
-	Normal: "Normal",
-	Fighting: "Fighting",
-	Fire: "Fire",
-	Grass: "Grass",
-	Water: "Water",
-	Psychic: "Psychic",
-	Electric: "Electric",
-	Ghost: "Ghost",
-	Ground: "Ground"
+	Ground: "Ground",
+    Ghost: "Ghost"
 } as const;
 
 export type TypeKey = keyof typeof Types;

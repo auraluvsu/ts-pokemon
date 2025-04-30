@@ -1,0 +1,13 @@
+There are 4 effects:
+Paralysis
+Poison
+Burn
+Sleep
+
+The Paralysis condition will have the effect of lowering chance of attack to 75% of its usual chance
+The Poison condition will inflict damage equal to 1/8 of the targets max hp every turn
+Badly Poisoned TBD after creating Poisoned
+Burn will work the same as Poisoned
+Sleep will disallow attacks until a random number under between 0 and 30 has been chosen.
+    The random number will be between 0 and 10
+
