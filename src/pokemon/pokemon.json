@@ -4,62 +4,80 @@
         "type": "Grass",
         "atk": 25,
         "def": 30,
-        "hp": 110
+        "hp": 110,
+        "maxHp": 110,
+        "level": 5
     },
     {
         "name": "Squirtle",
         "type": "Water",
         "atk": 28,
         "def": 40,
-        "hp": 90
+        "hp": 90,
+        "maxHp": 90,
+        "level": 5
     },
     {
         "name": "Charmander",
         "type": "Fire",
         "atk":37,
         "def": 28,
-        "hp": 88
+        "hp": 88,
+        "maxHp": 88,
+        "level": 5
     },
     {
         "name": "Pikachu",
         "type": "Electric",
         "atk": 33,
         "def": 30,
-        "hp": 90
+        "hp": 90,
+        "maxHp": 90,
+        "level": 5
     },
     {
         "name": "Pidgey",
         "type": "Flying",
         "atk": 25,
         "def": 22,
-        "hp": 80
+        "hp": 80,
+        "maxHp": 80,
+        "level": 5
     },
     {
         "name": "Mimikyu",
         "type": "Ghost",
         "atk": 31,
         "def": 31,
-        "hp":97
+        "hp":97,
+        "maxHp": 97,
+        "level": 5
     },
     {
         "name": "Machop",
         "type": "Fighting",
         "atk": 28,
         "def": 23,
-        "hp": 82
+        "hp": 82,
+        "maxHp": 82,
+        "level": 5
     },
     {
         "name": "Espurr",
         "type": "Psychic",
         "atk": 27,
         "def": 24,
-        "hp": 85
+        "hp": 85,
+        "maxHp": 85,
+        "level": 5
     },
     {
         "name": "Drilbur",
         "type": "Ground",
         "atk": 28,
         "def": 27,
-        "hp": 88
+        "hp": 88,
+        "maxHp": 88,
+        "level": 5
     },
 }

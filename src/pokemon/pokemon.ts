@@ -8,6 +8,7 @@ export interface PokemonData {
     atk: number;
     def: number;
     hp: number;
+    maxHp: number;
     level: number;
     moveset: Move[];
 }
@@ -24,16 +25,20 @@ export interface MoveData {
 export class Pokemon {
     level: number = 10;
     statusEffect!: StatusEffect | null;
+    statusTurns!: number | null;
     constructor(
         public name: string,
         public type: Type,
         public atk: number,
         public def: number, 
         public hp: number,
+        public maxHp: number,
         public moveset: Move[] | undefined
     ){}
-    setEffect(effect: StatusEffect) {
-        this.statusEffect = effect;
+    setEffect(effect: StatusEffect|null) {
+        if (this.statusEffect === null) {
+            this.statusEffect = effect;
+        }
     }
     attack(target: Pokemon, move: number): boolean {
         if (target.hp < 1) {
@@ -55,7 +60,7 @@ export class Pokemon {
     }
     static fromJSON(data: PokemonData): Pokemon {
         const moves: Move[] | undefined = data.moveset.map(Move.fromJSON);
-        return new Pokemon(data.name, data.type, data.atk, data.def, data.hp, moves);
+        return new Pokemon(data.name, data.type, data.atk, data.def, data.hp, data.maxHp, moves);
     }
 }
 
