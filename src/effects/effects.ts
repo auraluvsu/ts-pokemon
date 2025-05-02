@@ -1,4 +1,4 @@
-import { Pokemon } from "../pokemon/pokemon";
+import { Pokemon } from "../pokemon/pokemon.js";
 
 export type StatusEffect = "Paralyzed" | "Poisoned" | "Burned" | "Asleep";
 
@@ -11,9 +11,18 @@ export function paralysis(pkm: Pokemon) {
 }
 
 export function poison(pkm: Pokemon) {
-    console.log(`${pkm.name} is being damaged by the poison!`);
+    console.log(`${pkm.name} was damaged by the poison!`);
     pkm.hp -= (pkm.hp * (1/8));
 }
+
+export function badlyPoisoned(pkm: Pokemon) {
+    let poisonCount = (1/16);
+    let dmg = pkm.maxHp - poisonCount;
+    console.log(`${pkm.name} was damaged by the bad poison`);
+    pkm.hp -= dmg;
+    poisonCount += (1/16)
+}
+
 
 export function burn(pkm: Pokemon) {
     const dmg: number = Math.floor(pkm.maxHp * (1/8));

@@ -1,5 +1,5 @@
-import {Types} from "../types/types";
-import { StatusEffect } from "../effects/effects";
+import {Types} from "../types/types.js";
+import { StatusEffect } from "../effects/effects.js";
 type Type = typeof Types[keyof typeof Types];
 
 export interface PokemonData {
