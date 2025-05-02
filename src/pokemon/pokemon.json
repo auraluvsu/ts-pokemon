@@ -1,4 +1,4 @@
-{
+[
     {
         "name": "Bulbasaur",
         "type": "Grass",
@@ -79,5 +79,5 @@
         "hp": 88,
         "maxHp": 88,
         "level": 5
-    },
-}
+    }
+]
