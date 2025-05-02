@@ -21,7 +21,7 @@ wss.on('connection', (ws) => {
             });
         });
     };
-    (async() => {
+    const startGame = async() => {
         const playerId = crypto.randomUUID();
         const playerName = await askQuestion("What is your name?\n");
         const myPlayer = new Player(playerName, playerId);
@@ -30,8 +30,8 @@ wss.on('connection', (ws) => {
             playerName,
             playerId
         }));
-        ws.on('message', (msg) => {
-            ;
-        });
-    })();
+        const chooseMove = await askQuestion("Choose a move 1-4")
+        myPlayer.field?.attack(opponent, parseInt(chooseMove));
+    };
+    startGame();
 });

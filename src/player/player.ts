@@ -50,7 +50,7 @@ export default class Player {
     use(item: Potion) {
         for (let thing of this.items) {
             if (thing === item) {
-                item.heal(this.field);
+                item.heal(this.field!);
             } else {
                 console.log("The item specified is not available!");
             }
