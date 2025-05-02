@@ -1,5 +1,6 @@
 import {Types} from "../types/types.js";
 import { StatusEffect } from "../effects/effects.js";
+import Player from '../player/player.js';
 type Type = typeof Types[keyof typeof Types];
 
 export interface PokemonData {
@@ -22,6 +23,8 @@ export interface MoveData {
     effect: StatusEffect;
 }
 
+export type Item = "Potion" | "Super Potion" | "Hyper Potion";
+
 export class Pokemon {
     level: number = 10;
     statusEffect!: StatusEffect | null;
@@ -40,8 +43,12 @@ export class Pokemon {
             this.statusEffect = effect;
         }
     }
-    attack(target: Pokemon, move: number): boolean {
-        if (target.hp < 1) {
+    attack(target: Player, move: number): boolean {
+        if (!target.field) {
+            console.error("No opposing pokemon on the field!");
+            return false;
+        }
+        if (target.field.hp < 1) {
             throw new Error("Error! Pokemon health is invalid");
         } else {
             const moveIndex = move - 1;
@@ -49,10 +56,11 @@ export class Pokemon {
             if (!newMove) {
                 console.log(`Error! Move number ${move} does not exist`); 
             }
-            target.hp -= newMove.power;
+            target.field.hp -= newMove.power;
             newMove.currentPP--;
-            if (target.hp <= 0) {
-                console.log(`${target.name}'s HP has been reduced to 0!\n${target.name} fainted!`);
+            if (target.field.hp <= 0) {
+                console.log(`${target.field.name}'s HP has been reduced to 0!\n${target.field.name} fainted!`);
+                target.faint(target.field);
                 return true
             }
             return false
