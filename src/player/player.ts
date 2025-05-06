@@ -1,4 +1,3 @@
-import { warn } from 'console';
 import {Pokemon, Item} from '../pokemon/pokemon.js';
 
 export class Potion implements Potions {

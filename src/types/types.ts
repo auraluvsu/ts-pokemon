@@ -26,6 +26,5 @@ export const Types = {
 	Ground: "Ground",
     Ghost: "Ghost"
 } as const;
-
 export type TypeKey = keyof typeof Types;
 Object.freeze(Types)

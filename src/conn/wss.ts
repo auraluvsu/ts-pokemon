@@ -1,26 +1,13 @@
-import * as readline from 'readline';
-import { WebSocketServer } from 'ws';
+import {askQuestion} from '../pokemon/battle.js';
 import Player from '../player/player.js';
-import { type } from 'os';
-import { warn } from 'console';
+import { WebSocketServer } from 'ws';
 
 const wss = new WebSocketServer({port:8080});
-const connectedPlayers: Record<string, WebSocket> = {};
+type ConnectedPlayers = Record<string, { player: Player, socket: WebSocket }>
+const connectedPlayers: ConnectedPlayers = {};
 
 wss.on('connection', (ws) => {
     console.log("Player is connected. Awaiting opponent...");
-    const askQuestion = (query: string): Promise<string> => {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
-        return new Promise((resolve) => {
-            rl.question(query, (answer) => {
-                rl.close();
-                resolve(answer);
-            });
-        });
-    };
     const startGame = async() => {
         const playerId = crypto.randomUUID();
         const playerName = await askQuestion("What is your name?\n");
@@ -30,8 +17,7 @@ wss.on('connection', (ws) => {
             playerName,
             playerId
         }));
-        const chooseMove = await askQuestion("Choose a move 1-4")
-        myPlayer.field?.attack(opponent, parseInt(chooseMove));
+        battle(myPlayer, opponent);
     };
     startGame();
 });

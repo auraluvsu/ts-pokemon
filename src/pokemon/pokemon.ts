@@ -17,6 +17,7 @@ export interface PokemonData {
 export interface MoveData {
     name: string;
     type: Type;
+
     power: number;
     maxPP: number,
     currentPP: number;
