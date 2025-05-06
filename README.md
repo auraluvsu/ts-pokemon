@@ -10,7 +10,6 @@
         <li>Sleep</li>
         </ul>
     </li>
-    //khjug
     <li>Create Websocket servers and clients
         <ul>
         <li>Create client connections</li>
@@ -20,7 +19,7 @@
             <ul>
             <li>Create a way to target other connected players and their pokemon</li>
             <li>Find a way to make it turn based while also making the process asynchronous</li>
-            </ul></li>
+            </ul><br></li>
         </ul></li>
     <li>Add correct typing and json file with type matrix</li>
     <li>Make json file with various pokemon that can be selected to battle with</li>
